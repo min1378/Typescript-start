@@ -73,7 +73,7 @@ Learning Typescript by making a Blockchain with it
     "license": "MIT",
     "scripts": {
       "start": "node index.js", // yarn start = node index.js 와 같다.
-      "prestart": "tsc" // start 이전에 prestart가 실행되는데 그 때 실행되는 tsc
+      "prestart": "tsc" // start 이전에 prestart가 실행되는데 그 때 실행되는 tsc 
     },
     "dependencies": {
       "typescript": "^3.7.5"
@@ -82,4 +82,32 @@ Learning Typescript by making a Blockchain with it
   ```
 
 - index.ts를 컴파일하면 index.js.map index.js 파일이 생성된다. 이는 node.js는 js 확장자만 이해할 수 있기 때문.
+
+## Typescript 시작하기
+
+``index.ts``
+
+```typescript
+const name = "윤성민",
+  age = 24,
+  gender = "male";
+
+const sayHi = (name, age, gender) => {
+    //(name, age, gender?) 물음표가 붙은 인자는 선택사항.
+  console.log(`Hello ${name}, you are ${age}, you are ${gender}`);
+};
+
+sayHi(name, age, gender);
+sayHi(name, age); // Expected 3 arguments, but got 2. 컴파일이 되지 않음
+// javascript 였다면 실행되고 you are undefined 라 떴을 것.
+export {};
+```
+
+
+
+
+
+
+
+
 
