@@ -168,7 +168,33 @@ Learning Typescript by making a Blockchain with it
   
     5. yarn start 후 코드를 수정하면 dist 폴더에 저장된다.
 
+- 오브젝트를 인수로 받는 함수.
 
+  ```typescript
+  interface Human {
+    name: string;
+    age: number;
+    gender: string;
+  }
+  // interface는 js에서 작동하지 않는다. 오로지 ts에서 쓰기 위한 것.
+  const Person = {
+    name: "윤성민",
+    age: 24,
+    gender: "male"
+  };
+  const sayHi = (Person: Human): void => {
+    console.log(
+      `Hello ${Person.name}, you are ${Person.age}, you are ${Person.gender}`
+    );
+  };
+  
+  sayHi(Person);
+  
+  export {};
+  
+  ```
+
+  
 
 
 
