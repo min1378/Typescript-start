@@ -74,7 +74,7 @@ Learning Typescript by making a Blockchain with it
     "license": "MIT",
     "scripts": {
       "start": "node index.js", 
-      "prestart": "tsc" // start 이전에 prestart가 실행되는데 그 때 실행되는 tsc 
+      "prestart": "tsc" 
     },
     "dependencies": {
       "typescript": "^3.7.5"
