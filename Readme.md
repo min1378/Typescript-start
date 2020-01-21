@@ -35,21 +35,22 @@ Learning Typescript by making a Blockchain with it
 
     - typescript의 설정 입력하는 파일.
 
-    ``tsconfig.json``
-
     ```json
-    {
+{
       "compilerOptions": {
-        "module": "commonjs", //  모듈 import
-        "target": "ES2015", // 어떤 버전 javascript 쓸지
+        "module": "commonjs",
+        "target": "ES2015",
         "sourceMap": true
       },
-      "include": ["index.ts"], // 컴파일 과정에서 포함할 파일
-      "exclude": ["node_modules"] // default로 제외시킨다.
+      "include": ["index.ts"],
+      "exclude": ["node_modules"]
     }
-    
     ```
-
+    - "compilerOptions"
+      - module : import할 모듈
+      - target : 어떤 javascript 버전을 쓸 것인지
+    - "include" : 컴파일 과정에서 포함할 파일
+    - "exclude" : default로 제외시킨다.
 - index.ts 생성
 
   ```typescript
@@ -72,7 +73,7 @@ Learning Typescript by making a Blockchain with it
     "author": "min1378 <qwes123@naver.com>",
     "license": "MIT",
     "scripts": {
-      "start": "node index.js", // yarn start = node index.js 와 같다.
+      "start": "node index.js", 
       "prestart": "tsc" // start 이전에 prestart가 실행되는데 그 때 실행되는 tsc 
     },
     "dependencies": {
@@ -80,6 +81,10 @@ Learning Typescript by making a Blockchain with it
     }
   }
   ```
+  - "start" : "node index.js"  
+    - yarn start = node index.js 와 같다.
+  - "prestart" : "tsc" 
+    - start 이전에 prestart가 실행되는데 그 때 실행되는 tsc 
 
 - index.ts를 컴파일하면 index.js.map index.js 파일이 생성된다. 이는 node.js는 js 확장자만 이해할 수 있기 때문.
 
@@ -124,7 +129,7 @@ Learning Typescript by making a Blockchain with it
   
    ```bash
      $ yarn add tsc-watch --dev
-     ```
+   ```
   
     2.  pakage.json 수정
   
@@ -154,13 +159,13 @@ Learning Typescript by making a Blockchain with it
        ```json
        {
          "compilerOptions": {
-           "module": "commonjs", //  모듈 import
-           "target": "ES2015", // 어떤 버전 javascript 쓸지
+           "module": "commonjs",
+           "target": "ES2015", 
            "sourceMap": true,
            "outDir": "dist"
          },
-         "include": ["src/**/*"], // 컴파일 과정에서 포함할 파일
-         "exclude": ["node_modules"] // default로 제외시킨다.
+         "include": ["src/**/*"],
+         "exclude": ["node_modules"]
        }
        ```
   
