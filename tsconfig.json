@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "commonjs", //  모듈 import
+    "target": "ES2015", // 어떤 버전 javascript 쓸지
+    "sourceMap": true
+  },
+  "include": ["index.ts"], // 컴파일 과정에서 포함할 파일
+  "exclude": ["node_modules"] // default로 제외시킨다.
+}
