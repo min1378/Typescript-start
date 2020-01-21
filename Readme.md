@@ -85,27 +85,88 @@ Learning Typescript by making a Blockchain with it
 
 ## Typescript 시작하기
 
-``index.ts``
+- typescript 기본 형식
 
-```typescript
-const name = "윤성민",
-  age = 24,
-  gender = "male";
+    ```typescript
+    const name = "윤성민",
+      age = 24,
+      gender = "male";
 
-const sayHi = (name, age, gender) => {
-    //(name, age, gender?) 물음표가 붙은 인자는 선택사항.
-  console.log(`Hello ${name}, you are ${age}, you are ${gender}`);
-};
+    const sayHi = (name, age, gender) => {
+        //(name, age, gender?) 물음표가 붙은 인자는 선택사항.
+      console.log(`Hello ${name}, you are ${age}, you are ${gender}`);
+    };
 
-sayHi(name, age, gender);
-sayHi(name, age); // Expected 3 arguments, but got 2. 컴파일이 되지 않음
-// javascript 였다면 실행되고 you are undefined 라 떴을 것.
-export {};
-```
+    sayHi(name, age, gender);
+    sayHi(name, age); // Expected 3 arguments, but got 2. 컴파일이 되지 않음
+    // javascript 였다면 실행되고 you are undefined 라 떴을 것.
+    export {};
+    ```
+    
+- vscode에서 TSLint 익스텐션 활용하면 자동으로 Lint 해줌.    
 
+- 인수에 타입 지정하기
 
+  ```typescript
+  const sayHi = (name: string, age: number, gender: string): void => {
+      // function = (인수 : type): 함수의 type => {}
+    console.log(`Hello ${name}, you are ${age}, you are ${gender}`);
+  };
+  
+  sayHi("윤성민", 24, "male");
+  
+  export {};
+  ```
+  
+- watch 모드로 실행하기 (매번 yarn start 치기 귀찮음...)
 
-
+	1. tsc-watch 설치
+  
+   ```bash
+     $ yarn add tsc-watch --dev
+     ```
+  
+    2.  pakage.json 수정
+  
+       ```json
+       {
+         "name": "typechain",
+         "version": "1.0.0",
+         "description": "Learning Typescript by making a Blockchain with it",
+         "main": "index.js",
+         "repository": "https://github.com/min1378/Typescript-start.git",
+         "author": "min1378 <qwes123@naver.com>",
+         "license": "MIT",
+         "scripts": {
+           "start": "tsc-watch --onSuccess \" node dist/index.js\" "
+         },
+         "dependencies": {
+           "typescript": "^3.7.5"
+         },
+         "devDependencies": {
+           "tsc-watch": "^4.0.0"
+         }
+       }
+       ```
+  
+    3. tsconfig.json 수정
+  
+       ```json
+       {
+         "compilerOptions": {
+           "module": "commonjs", //  모듈 import
+           "target": "ES2015", // 어떤 버전 javascript 쓸지
+           "sourceMap": true,
+           "outDir": "dist"
+         },
+         "include": ["src/**/*"], // 컴파일 과정에서 포함할 파일
+         "exclude": ["node_modules"] // default로 제외시킨다.
+       }
+       ```
+  
+    4. dist 폴더 생성, src 폴더 생성 후 src폴더로 index.ts 이동
+  
+    5. yarn start 후 코드를 수정하면 dist 폴더에 저장된다.
 
 
 
