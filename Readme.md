@@ -123,16 +123,16 @@ Learning Typescript by making a Blockchain with it
   export {};
   ```
   
-- watch 모드로 실행하기 (매번 yarn start 치기 귀찮음...)
+- watch 모드로 실행하기 (매번 yarn start 치기 귀찮음... watch가 알아서 확인해준다.)
 
-	1. tsc-watch 설치
-  
+  1. tsc-watch 설치
+
    ```bash
      $ yarn add tsc-watch --dev
    ```
-  
+
     2.  pakage.json 수정
-  
+
        ```json
        {
          "name": "typechain",
@@ -153,9 +153,9 @@ Learning Typescript by making a Blockchain with it
          }
        }
        ```
-  
+
     3. tsconfig.json 수정
-  
+
        ```json
        {
          "compilerOptions": {
@@ -168,10 +168,12 @@ Learning Typescript by making a Blockchain with it
          "exclude": ["node_modules"]
        }
        ```
-  
+
     4. dist 폴더 생성, src 폴더 생성 후 src폴더로 index.ts 이동
-  
+
     5. yarn start 후 코드를 수정하면 dist 폴더에 저장된다.
+
+       
 
 - 오브젝트를 인수로 받는 함수.
 
@@ -198,12 +200,16 @@ Learning Typescript by making a Blockchain with it
   export {};
   ```
 
+  
+
 - Javascript에 interface를 넣고 싶을 때 Class를 활용.
 
   ```typescript
   class Human {
-    public name: string; // js에선 public, private 신경쓰지 않는다.
-    public age: number; // private은 외부에서 변경할 수 없거나 호출하지 않을 때 쓴다.
+    public name: string; // js에선 public, private 구분이 없다
+    public age: number; // private은 외부에서 변경할 수 없거나 호출하지 못하게 할때 쓴다.
+    // 만약 
+    // private age: number; 라면 sayHi 함수에서 Person.age로 호출 할 수 없다.
     public gender: string;
     constructor(
       name: string,
@@ -225,10 +231,42 @@ Learning Typescript by making a Blockchain with it
   sayHi(lynn);
   
   export {};
+
+  ```
   
+
+## 블록체인 만들기
+
+- ### 블록체인 생성
+
+  ```typescript
+  class Block {
+    public index: number;
+    public hash: string;
+    public previousHash: string;
+    public data: string;
+    public timestamp: number;
+    constructor(
+      index: number,
+      hash: string,
+      previousHash: string,
+      data: string,
+      timestamp: number
+    ) {
+      this.index = index;
+      this.hash = hash;
+      this.previousHash = previousHash;
+      this.data = data;
+      this.timestamp = timestamp;
+    }
+  }
+  const genesisBlock: Block = new Block(0, "123124234234", "", "Hello", 123456);
+  let blockChain: [Block] = [genesisBlock];
+  blockChain.push("이건될까?"); // Argument of type '"이건될까?"' is not assignable to parameter of type 'Block'.
+  console.log(blockChain);
+  export {};
   ```
 
   
-
 
 

@@ -1,24 +1,24 @@
-class Human {
-  public name: string; // js에선 public, private 신경쓰지 않는다.
-  public age: number;
-  public gender: string;
+class Block {
+  public index: number;
+  public hash: string;
+  public previousHash: string;
+  public data: string;
+  public timestamp: number;
   constructor(
-    name: string,
-    age: number,
-    gender: string //constructor는 클래스가 시작할 때 호출됨.
+    index: number,
+    hash: string,
+    previousHash: string,
+    data: string,
+    timestamp: number
   ) {
-    this.name = name;
-    this.age = age;
-    this.gender = gender;
+    this.index = index;
+    this.hash = hash;
+    this.previousHash = previousHash;
+    this.data = data;
+    this.timestamp = timestamp;
   }
 }
-const lynn = new Human("Lynn", 18, "female");
-const sayHi = (Person: Human): void => {
-  console.log(
-    `Hello ${Person.name}, you are ${Person.age}, you are ${Person.gender}`
-  );
-};
-
-sayHi(lynn);
-
+const genesisBlock: Block = new Block(0, "123124234234", "", "Hello", 123456);
+let blockChain: [Block] = [genesisBlock];
+console.log(blockChain);
 export {};
