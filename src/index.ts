@@ -1,10 +1,5 @@
 import * as CryptoJS from "crypto-js"; // Typescript import
 class Block {
-  public index: number;
-  public hash: string;
-  public previousHash: string;
-  public data: string;
-  public timestamp: number;
   // sayHello = () => {return "Hello"} 이런 함수는 class를 생성했을 때만 호출할 수 있다.
   static calculateBlockHash = (
     // static은 class를 생성하지 않아도 클래스내에서 항상 호출 가능하다.
@@ -14,6 +9,19 @@ class Block {
     data: string
   ): string =>
     CryptoJS.SHA256(index + previousHash + timestamp + data).toString();
+
+  static validateStructure = (anyBlock: Block): boolean =>
+    typeof anyBlock.index === "number" &&
+    typeof anyBlock.hash === "string" &&
+    typeof anyBlock.previousHash === "string" &&
+    typeof anyBlock.data === "string" &&
+    typeof anyBlock.timestamp === "number";
+
+  public index: number;
+  public hash: string;
+  public previousHash: string;
+  public data: string;
+  public timestamp: number;
   constructor(
     index: number,
     hash: string,
@@ -57,5 +65,17 @@ const createNewBlock = (data: string): Block => {
   );
   return newBlock;
 };
+
+const isBlockVaild = (candidateBlock: Block, previousBlock: Block): boolean => {
+  if (!Block.validateStructure(candidateBlock)) {
+    return false;
+  } else if (candidateBlock.index !== previousBlock.index + 1) {
+    return false;
+  } else if (candidateBlock.previousHash !== previousBlock.hash) {
+    return false;
+  }
+};
+
 console.log(createNewBlock("Hello"), createNewBlock("bye bye"));
+
 export {};

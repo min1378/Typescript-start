@@ -360,7 +360,33 @@ Learning Typescript by making a Blockchain with it
     data: 'bye bye',
     timestamp: 1579659163
   }
-  // index가 변하지않는 오류가 있다. timestamp도 같다...
+  // 새로운 블럭을 만들었기 때문에 인덱스가 같다. 연결지은게 아님!
+  ```
+
+- 블록 유효성 검사
+
+  ```typescript
+  class Block{
+     (...)
+     static validateStructure = (anyBlock: Block): boolean =>
+      typeof anyBlock.index === "number" &&
+      typeof anyBlock.hash === "string" &&
+      typeof anyBlock.previousHash === "string" &&
+      typeof anyBlock.data === "string" &&
+      typeof anyBlock.timestamp === "number";
+     (...)
+  }
+  
+  const isBlockVaild = (candidateBlock: Block, previousBlock: Block): boolean => {
+    if (!Block.validateStructure(candidateBlock)) {
+      return false;
+    } else if (candidateBlock.index !== previousBlock.index + 1) {
+      return false;
+    } else if (candidateBlock.previousHash !== previousBlock.hash) {
+      return false;
+    }
+  };
+  
   ```
 
   
