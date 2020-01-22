@@ -11,7 +11,7 @@ Learning Typescript by making a Blockchain with it
     ```bash
     $ yarn init
     ```
-``pakage.json``
+    ``pakage.json``
 
     ```json
     {
@@ -36,7 +36,7 @@ Learning Typescript by making a Blockchain with it
     - typescript의 설정 입력하는 파일.
 
     ```json
-{
+    {
       "compilerOptions": {
         "module": "commonjs",
         "target": "ES2015",
