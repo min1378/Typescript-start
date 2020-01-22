@@ -363,7 +363,7 @@ Learning Typescript by making a Blockchain with it
   // 새로운 블럭을 만들었기 때문에 인덱스가 같다. 연결지은게 아님!
   ```
 
-- 블록 유효성 검사
+- 블록 유효성 검사, 블록 연결 함수 구현
 
   ```typescript
   class Block{
@@ -376,6 +376,13 @@ Learning Typescript by making a Blockchain with it
       typeof anyBlock.timestamp === "number";
      (...)
   }
+  const getHashforBlock = (anyBlock: Block): string =>
+    Block.calculateBlockHash(
+      anyBlock.index,
+      getLatestBlock().hash,
+      anyBlock.timestamp,
+      anyBlock.data
+    );
   
   const isBlockVaild = (candidateBlock: Block, previousBlock: Block): boolean => {
     if (!Block.validateStructure(candidateBlock)) {
@@ -384,10 +391,21 @@ Learning Typescript by making a Blockchain with it
       return false;
     } else if (candidateBlock.previousHash !== previousBlock.hash) {
       return false;
+    } else if (getHashforBlock(candidateBlock) !== candidateBlock.hash) {
+      return false;
+    } else {
+      return true;
     }
   };
   
+  const addBlock = (candidateBlock: Block): void => {
+    if (isBlockVaild(candidateBlock, getLatestBlock())) {
+      blockchain.push(candidateBlock);
+    }
+  };
   ```
+
+  
 
   
 
