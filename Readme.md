@@ -237,7 +237,7 @@ Learning Typescript by making a Blockchain with it
 
 ## 블록체인 만들기
 
-- ### 블록체인 생성
+- 블록만들기
 
   ```typescript
   class Block {
@@ -261,12 +261,51 @@ Learning Typescript by making a Blockchain with it
     }
   }
   const genesisBlock: Block = new Block(0, "123124234234", "", "Hello", 123456);
-  let blockChain: [Block] = [genesisBlock];
+  let blockChain: Block[] = [genesisBlock];
   blockChain.push("이건될까?"); // Argument of type '"이건될까?"' is not assignable to parameter of type 'Block'.
   console.log(blockChain);
   export {};
   ```
+  
+- crpyto.js 설치(Hash함수로 간편하게 바꿔주는 라이브러리)
+
+  ```bash
+  $yarn add crypto-js
+  ```
+  
+- class 내에 Hash를 만드는 함수 생성.
+
+  ```typescript
+  import * as CryptoJS from "crypto-js"; // Typescript import 방식
+  class Block {
+    public index: number;
+    public hash: string;
+    public previousHash: string;
+    public data: string;
+    public timestamp: number;
+    // sayHello = () => {return "Hello"} 이런 함수는 class를 생성했을 때만 호출할 수 있다.
+    static calculateBlockHash = (
+      // static은 class를 생성하지 않아도 클래스내에서 항상 호출 가능하다.
+      index: number,
+      previousHash: string,
+      timestamp: number,
+      data: string
+    ): string =>
+      CryptoJS.SHA256(index + previousHash + timestamp + data).toString();
+    constructor(
+      index: number,
+      hash: string,
+      previousHash: string,
+      data: string,
+      timestamp: number
+    ) {
+      this.index = index;
+      this.hash = hash;
+      this.previousHash = previousHash;
+      this.data = data;
+      this.timestamp = timestamp;
+    }
+  }
+  ```
 
   
-
-
