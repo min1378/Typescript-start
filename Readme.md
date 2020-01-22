@@ -405,7 +405,51 @@ Learning Typescript by making a Blockchain with it
   };
   ```
 
+- 블록체인 만들기
+
+  ```typescript
+  const createNewBlock = (data: string): Block => {
+    (...)
+    addBlock(newBlock);
+    return newBlock;
+  };
   
+  createNewBlock("second block");
+  createNewBlock("third block");
+  createNewBlock("fourth block");
+  console.log(blockchain);
+  // 실행결과
+  [
+    Block {
+      index: 0,
+      hash: '123124234234',
+      previousHash: '',
+      data: 'Hello',
+      timestamp: 123456
+    },
+    Block {
+      index: 1,
+      hash: '63dd8b5fb2f89fe22de1d9def932c4f515e8bf3eefa4d2f85916c56f25b5fca4',
+      previousHash: '123124234234',
+      data: 'second block',
+      timestamp: 1579662215
+    },
+    Block {
+      index: 2,
+      hash: 'c0c5f07a6d0902b4ca4c3f1c634ce307f9421258fb669d6be4481e6f8a30e7e8',
+      previousHash: '63dd8b5fb2f89fe22de1d9def932c4f515e8bf3eefa4d2f85916c56f25b5fca4',
+      data: 'third block',
+      timestamp: 1579662215
+    },
+    Block {
+      index: 3,
+      hash: 'd1cf4e3da0ced7093a0aa10e8dc91c952377b267776a20b7c249a9244c42d926',
+      previousHash: 'c0c5f07a6d0902b4ca4c3f1c634ce307f9421258fb669d6be4481e6f8a30e7e8',
+      data: 'fourth block',
+      timestamp: 1579662215
+    }
+  ]
+  ```
 
   
 
