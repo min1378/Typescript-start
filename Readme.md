@@ -308,4 +308,60 @@ Learning Typescript by making a Blockchain with it
   }
   ```
 
+- 블록체인 정보를 생성하는 함수 구현
+
+  ```typescript
+  const genesisBlock: Block = new Block(0, "123124234234", "", "Hello", 123456);
   
+  let blockchain: Block[] = [genesisBlock];
+  
+  const getBlockchain = (): Block[] => blockchain;
+  
+  const getLatestBlock = (): Block => blockchain[blockchain.length - 1];
+  
+  const getNewTimeStamp = (): number => Math.round(new Date().getTime() / 1000);
+  ```
+
+- 새로운 블록을 생성하는 함수 
+
+  ```typescript
+  const createNewBlock = (data: string): Block => {
+    const previousBlock: Block = getLatestBlock();
+    const newIndex: number = previousBlock.index + 1;
+    const previousHash: string = previousBlock.hash;
+    const newTimeStamp: number = getNewTimeStamp();
+    const newHash: string = Block.calculateBlockHash(
+      newIndex,
+      previousHash,
+      newTimeStamp,
+      data
+    );
+    const newBlock: Block = new Block(
+      newIndex,
+      newHash,
+      previousHash,
+      data,
+      newTimeStamp
+    );
+    return newBlock;
+  };
+  console.log(createNewBlock("Hello"), createNewBlock("bye bye"));
+  // 결과값
+  Block {
+    index: 1,
+    hash: '685697b2297986aff9736e7a65ecf8201f1f25f23d37638b2aff317b2c0e71bd',
+    previousHash: '123124234234',
+    data: 'Hello',
+    timestamp: 1579659163
+  } Block {
+    index: 1,
+    hash: '1569c770c844d7db0ce06788eb5b7c3b228835d287f176ffa18191903164c622',
+    previousHash: '123124234234',
+    data: 'bye bye',
+    timestamp: 1579659163
+  }
+  // index가 변하지않는 오류가 있다. timestamp도 같다...
+  ```
+
+  
+
